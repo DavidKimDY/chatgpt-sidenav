@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "My Chrome Extension",
+  "version": "1.0.0",
+  "description": "기본적인 크롬 익스텐션",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": []
+}
