@@ -1,0 +1,126 @@
+/* ChatGPT 질문 사이드바 스타일 */
+
+#chatgpt-question-sidebar {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  width: 280px;
+  background-color: transparent;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: unset;
+  pointer-events: none;
+  max-height: calc(100vh - 172px);
+  transition: width 0.3s ease;
+}
+
+#chatgpt-question-sidebar.collapsed {
+  width: 40px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+  pointer-events: auto;
+}
+
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.2s;
+  pointer-events: auto;
+}
+
+.sidebar-toggle:hover {
+  color: #374151;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-content {
+  flex: 1;
+  padding: 20px 0;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.sidebar-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+#chatgpt-question-sidebar.collapsed .sidebar-content {
+  overflow: hidden;
+}
+
+#question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: auto;
+}
+
+.question-item {
+  padding: 10px 16px;
+  padding-left: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  background-color: transparent;
+  position: relative;
+  border-left: 1px solid #e5e7eb;
+  margin-left: 0;
+}
+
+#chatgpt-question-sidebar.collapsed .question-item {
+  padding: 8px 4px;
+  padding-left: 4px;
+  text-align: center;
+}
+
+.question-item:hover {
+  background-color: transparent;
+}
+
+.question-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #e5e7eb;
+}
+
+.question-text {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  word-break: break-word;
+  margin: 0;
+}
+
+#chatgpt-question-sidebar.collapsed .question-text {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.no-questions {
+  padding: 24px 20px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
