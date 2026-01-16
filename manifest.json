@@ -20,10 +20,6 @@
       "all_frames": false
     }
   ],
-  "permissions": [
-    "activeTab",
-    "tabs"
-  ],
   "host_permissions": [
     "https://chat.openai.com/*",
     "https://chatgpt.com/*",
