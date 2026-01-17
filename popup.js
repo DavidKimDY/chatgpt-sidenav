@@ -7,18 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   checkBtn.addEventListener('click', function() {
-    message.textContent = '확인 중...';
+    message.textContent = 'Checking...';
     message.style.color = '#666';
     
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       if (chrome.runtime.lastError) {
-        message.textContent = `❌ 에러: ${chrome.runtime.lastError.message}`;
+        message.textContent = `❌ Error: ${chrome.runtime.lastError.message}`;
         message.style.color = '#ef4444';
         return;
       }
       
       if (!tabs || !tabs[0]) {
-        message.textContent = '❌ 활성 탭을 찾을 수 없습니다';
+        message.textContent = '❌ Active tab not found';
         message.style.color = '#ef4444';
         return;
       }
@@ -27,13 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const url = tab.url;
       
       if (!url) {
-        message.textContent = '❌ 탭 URL을 가져올 수 없습니다';
+        message.textContent = '❌ Unable to get tab URL';
         message.style.color = '#ef4444';
         return;
       }
       
       if (!url.includes('chat.openai.com') && !url.includes('chatgpt.com')) {
-        message.textContent = '❌ ChatGPT 페이지가 아닙니다.\n\nChatGPT 페이지에서만 작동합니다.';
+        message.textContent = '❌ Not a ChatGPT page.\n\nThis extension only works on ChatGPT pages.';
         message.style.color = '#ef4444';
         message.style.fontSize = '12px';
         message.style.whiteSpace = 'pre-line';
@@ -42,15 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
       
       chrome.tabs.sendMessage(tab.id, { action: 'ping' }, function(response) {
         if (chrome.runtime.lastError) {
-          message.textContent = '❌ Content script가 실행되지 않았습니다!\n\nChatGPT 페이지를 새로고침해주세요.';
+          message.textContent = '❌ Content script is not running!\n\nPlease refresh the ChatGPT page.';
           message.style.color = '#ef4444';
           message.style.fontSize = '11px';
           message.style.whiteSpace = 'pre-line';
         } else if (response && response.status === 'ok') {
-          message.textContent = '✅ Content script가 실행 중입니다!';
+          message.textContent = '✅ Content script is running!';
           message.style.color = '#4CAF50';
         } else {
-          message.textContent = '⚠️ 응답을 받지 못했습니다.';
+          message.textContent = '⚠️ No response received.';
           message.style.color = '#f59e0b';
         }
       });

@@ -147,6 +147,12 @@
     return '';
   }
 
+  // 언어 감지 함수
+  function getLanguage() {
+    const lang = navigator.language || navigator.userLanguage;
+    return lang.startsWith('ko') ? 'ko' : 'en';
+  }
+
   // 사이드바 업데이트
   function updateSidebar() {
     const questionList = document.getElementById('question-list');
@@ -160,7 +166,9 @@
     const questions = extractQuestions();
     
     if (questions.length === 0) {
-      questionList.innerHTML = '<div class="no-questions">아직 질문이 없습니다.</div>';
+      const lang = getLanguage();
+      const noQuestionsText = lang === 'ko' ? '아직 질문이 없습니다.' : 'No questions yet.';
+      questionList.innerHTML = `<div class="no-questions">${noQuestionsText}</div>`;
       return;
     }
 
